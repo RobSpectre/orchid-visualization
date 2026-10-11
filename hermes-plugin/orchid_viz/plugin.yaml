@@ -1,0 +1,12 @@
+name: orchid_viz
+version: 0.2.0
+description: "Sends Hermes activity to the local Orchid visualizer (127.0.0.1:4747): stream deltas, per-request timing and usage, and finished messages (prompt, reasoning, replies, tool calls and results) so the reasoning trace works for any local user. Observer only; never blocks or alters the agent."
+author: orchid-visualization
+provides_hooks:
+  - on_stream_start
+  - on_stream_delta
+  - on_stream_end
+  - pre_api_request
+  - post_api_request
+  - pre_llm_call
+  - post_tool_call

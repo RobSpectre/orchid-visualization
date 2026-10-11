@@ -1,0 +1,62 @@
+:root { --ok: #DAFF33; --warn: #FFB547; --down: #FF5C7A; --info: #8A8FF7; }
+main { max-width: 1280px; }
+
+[data-status="ok"] { --c: var(--ok); }
+[data-status="warn"] { --c: var(--warn); }
+[data-status="down"] { --c: var(--down); }
+[data-status="info"] { --c: var(--info); }
+
+.light { width: 14px; height: 14px; border-radius: 50%; background: var(--c); box-shadow: 0 0 12px var(--c); flex: none; display: inline-block; }
+[data-status="down"] > .light, [data-status="down"] .head .light { animation: pulse 1.2s ease-in-out infinite; }
+@keyframes pulse { 50% { box-shadow: 0 0 2px var(--c); opacity: .55; } }
+
+.verdict {
+  display: flex; align-items: center; gap: 22px; padding: 26px 30px; border-radius: 12px;
+  border: 1px solid var(--c); background: linear-gradient(90deg, color-mix(in srgb, var(--c) 16%, transparent), rgba(0, 20, 34, .7) 60%);
+}
+.verdict .light { width: 34px; height: 34px; box-shadow: 0 0 34px var(--c); }
+.v-title { font-size: clamp(26px, 4vw, 44px); font-weight: 800; color: var(--c); line-height: 1.05; }
+.v-sub { color: var(--ink-dim); margin-top: 6px; font-size: 14px; }
+
+.systems { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 520px), 1fr)); gap: 18px; }
+.sys { border-top: 3px solid var(--c); }
+.sys .head { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+.sys h2 { margin: 0; font-size: 18px; letter-spacing: .04em; text-transform: none; color: var(--ink); font-weight: 800; }
+.sys .pill { margin-left: auto; font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; padding: 4px 10px; border-radius: 99px; color: #052B42; background: var(--c); }
+.sys .summary { color: var(--ink-dim); font-size: 13px; margin: 0 0 14px 26px; }
+.checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.checks > li { display: grid; grid-template-columns: 14px minmax(140px, 34%) 1fr; gap: 10px; align-items: baseline; padding: 8px 0; border-top: 1px solid rgba(224, 255, 79, .08); font-size: 13px; }
+.checks > li > .light { width: 9px; height: 9px; box-shadow: 0 0 6px var(--c); align-self: center; }
+.checks .name { color: var(--ink); font-weight: 600; }
+.checks .detail { color: var(--ink-dim); overflow-wrap: anywhere; }
+.checks > li[data-status="info"] > .light { box-shadow: none; opacity: .7; }
+.facts { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; margin: 14px 0 0; padding-top: 12px; border-top: 1px dashed var(--line); font-size: 12px; }
+.facts dt { color: var(--ink-faint); text-transform: uppercase; letter-spacing: .12em; font-size: 10.5px; padding-top: 2px; }
+.facts dd { margin: 0; color: var(--ink-dim); overflow-wrap: anywhere; }
+.events { margin: 14px 0 0; padding: 12px 0 0; border-top: 1px dashed var(--line); list-style: none; font-size: 12px; display: flex; flex-direction: column; gap: 6px; }
+.events li { color: var(--ink-dim); overflow-wrap: anywhere; }
+.events b { color: var(--warn); font-weight: 600; margin-right: 6px; }
+.events li.err b { color: var(--down); }
+.events .when { color: var(--ink-faint); margin-right: 6px; }
+
+@media (max-width: 720px) {
+  .verdict { padding: 18px; gap: 14px; }
+  .checks > li { grid-template-columns: 14px 1fr; }
+  .checks .detail { grid-column: 2; }
+  .nav a:not(.back) { display: none; }
+}
+
+/* diagnostic tips under failing checks */
+.check-tips { grid-column: 2 / -1; margin-top: 4px; padding: 10px 12px; border-radius: 8px; background: color-mix(in srgb, var(--c) 9%, rgba(0, 15, 26, .6)); border-left: 3px solid var(--c); }
+.tips { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 6px; color: var(--ink); font-size: 13px; line-height: 1.4; }
+.tip-cmd {
+  display: inline-block; margin-top: 3px; padding: 3px 8px; border-radius: 5px; cursor: copy; max-width: 100%;
+  font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; white-space: pre-wrap; word-break: break-all;
+  background: rgba(0, 0, 0, .4); border: 1px solid var(--line-strong); color: var(--mint);
+}
+.tip-cmd:hover, .tip-cmd:focus-visible { border-color: var(--lime); outline: none; }
+.tip-cmd.copied { border-color: var(--lime); color: var(--lime); }
+.tip-cmd.copied::after { content: '  ✓ copied'; }
+.tip-link { color: var(--lime); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; }
+.v-sub .tips { color: var(--ink-dim); }
+@media (max-width: 720px) { .check-tips { grid-column: 1 / -1; } }

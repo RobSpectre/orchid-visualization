@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orchid Signal Status</title>
+  <link rel="stylesheet" href="fonts/fonts.css">
+  <link rel="stylesheet" href="settings.css">
+  <link rel="stylesheet" href="status.css">
+</head>
+<body>
+  <header class="bar">
+    <a class="brand" href="/">
+      <img src="brand/token-factory-mark.svg" alt="">
+      <span class="wordmark">orchid<span>//</span>signal</span>
+      <span class="crumb">status</span>
+    </a>
+    <span class="saved" id="updated" aria-live="polite"></span>
+    <nav class="nav">
+      <a href="/settings">settings</a>
+      <a class="back" href="/">← visualizer</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="verdict" id="verdict" data-status="info">
+      <span class="light" aria-hidden="true"></span>
+      <div>
+        <div class="v-title" id="v-title">Checking…</div>
+        <div class="v-sub" id="v-sub">Orchid Studio · orchid-robot · Hermes Agent</div>
+      </div>
+    </section>
+    <div class="systems" id="systems"></div>
+  </main>
+
+  <script type="module" src="status.js"></script>
+</body>
+</html>

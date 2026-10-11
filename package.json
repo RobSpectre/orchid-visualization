@@ -1,0 +1,16 @@
+{
+  "name": "orchid-visualization",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Live sci-fi visualizer for Orchid Studio, orchid-robot and Hermes Agent on Nebius Token Factory",
+  "type": "module",
+  "engines": {
+    "node": ">=22.5"
+  },
+  "scripts": {
+    "start": "node server/index.mjs",
+    "check": "node --check server/index.mjs && node --check server/studio.mjs && node --check server/robot.mjs && node --check server/hermes.mjs && node --check server/redact.mjs",
+    "test": "node --test tests/",
+    "build:rig": "node scripts/build-rig.mjs"
+  }
+}

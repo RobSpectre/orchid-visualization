@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orchid Signal</title>
+  <link rel="stylesheet" href="fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="themes.css">
+</head>
+<body>
+  <canvas id="nebula"></canvas>
+  <canvas id="orbit-static"></canvas>
+  <canvas id="fx"></canvas>
+
+  <main class="stage">
+    <header class="top">
+      <div class="brand">
+        <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+          <circle cx="16" cy="16" r="13" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M16 3 L16 29 M3 16 L29 16" stroke="currentColor" stroke-width="0.8" opacity=".5"/>
+          <circle cx="16" cy="16" r="4.5" fill="currentColor"/>
+        </svg>
+        <div>
+          <div class="wordmark">orchid<span>//</span>signal</div>
+          <div class="sub">telepathic orchid · hermes agent · nebius token factory</div>
+        </div>
+      </div>
+      <div class="now-playing">
+        <div class="np-label">now playing</div>
+        <div class="np-title" id="np-title">—</div>
+        <div class="np-meta" id="np-meta">waiting for the downbeat</div>
+      </div>
+      <div class="transport">
+        <div class="bpm"><span id="bpm">---</span><small>bpm</small></div>
+        <div class="pos" id="pos">--.-.--</div>
+        <div class="state-pill" id="transport-state">idle</div>
+      </div>
+      <div class="sources" id="sources"></div>
+      <a class="gear" href="/settings" aria-label="Settings" title="Settings (S)">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.63 9.97 L22.05 10.27 L22.05 13.73 L19.63 14.03 L18.83 15.96 L20.33 17.89 L17.89 20.33 L15.96 18.83 L14.03 19.63 L13.73 22.05 L10.27 22.05 L9.97 19.63 L8.04 18.83 L6.11 20.33 L3.67 17.89 L5.17 15.96 L4.37 14.03 L1.95 13.73 L1.95 10.27 L4.37 9.97 L5.17 8.04 L3.67 6.11 L6.11 3.67 L8.04 5.17 L9.97 4.37 L10.27 1.95 L13.73 1.95 L14.03 4.37 L15.96 5.17 L17.89 3.67 L20.33 6.11 L18.83 8.04 Z"/><circle cx="12" cy="12" r="3.4"/></svg>
+      </a>
+    </header>
+
+    <!-- Signal theme: billboard banner (hidden in other themes) -->
+    <section class="banner" id="banner" aria-hidden="true">
+      <div class="bn-left">
+        <span class="bn-k">nebius token factory · <span id="bn-model">—</span></span>
+        <span class="bn-big"><span id="bn-tps">—</span><small>tok/s</small></span>
+      </div>
+      <div class="bn-right">
+        <span class="bn-k">now playing</span>
+        <span class="bn-beat" id="bn-beat">—</span>
+        <span class="bn-k" id="bn-meta"></span>
+      </div>
+    </section>
+
+    <aside class="panel factory" id="factory">
+      <!-- Official stacked lockup (from the brand guidelines). On dark backgrounds the
+           guidelines outline the navy blocks; the SVG draws those outlines in place. -->
+      <div class="tf-logo lockup" role="img" aria-label="Nebius Token Factory">
+        <img src="brand/lockup-stacked.png" alt="">
+        <svg viewBox="0 0 1204 682" aria-hidden="true">
+          <defs><linearGradient id="lk-grad" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0" stop-color="#DAFF33"/><stop offset=".55" stop-color="#62D9F2"/><stop offset="1" stop-color="#8A8FF7"/>
+          </linearGradient></defs>
+          <rect x="4" y="352" width="326" height="326" rx="74" fill="none" stroke="#DAFF33" stroke-width="6"/>
+          <rect x="352" y="352" width="848" height="326" rx="74" fill="none" stroke="url(#lk-grad)" stroke-width="6"/>
+        </svg>
+      </div>
+      <div class="model">
+        <div class="k">model</div>
+        <div class="model-name" id="tf-model">—</div>
+        <div class="model-meta" id="tf-provider">—</div>
+      </div>
+      <div class="hero">
+        <div class="k">output tokens / sec</div>
+        <div class="hero-num"><span id="tf-tps">—</span><small>tok/s</small></div>
+        <div class="hero-sub" id="tf-tps-sub">—</div>
+        <canvas class="spark" id="tf-spark" aria-label="Tokens generated per 2 minutes, last 2 hours"></canvas>
+        <div class="spark-axis"><span>2 h ago</span><span id="tf-spark-k">tokens generated</span><span>now</span></div>
+      </div>
+      <div class="rows">
+        <div class="row"><div class="rk"><span>time to first token</span><small id="tf-ttft-sub">—</small></div><div class="rv" id="tf-ttft">—</div></div>
+        <div class="row"><div class="rk"><span>avg latency</span><small id="tf-lat-sub">—</small></div><div class="rv" id="tf-lat">—</div></div>
+        <div class="row"><div class="rk"><span>tokens this session</span><small id="tf-tok-s-sub">—</small></div><div class="rv" id="tf-tok-s">—</div></div>
+        <div class="row"><div class="rk"><span>tokens last 30 days</span><small id="tf-tok-30-sub">—</small></div><div class="rv" id="tf-tok-30">—</div></div>
+        <div class="row ctx"><div class="rk"><span>context remaining</span><small id="tf-ctx-sub">—</small></div><div class="rv" id="tf-ctx-left">—</div><div class="ctx-bar"><i id="tf-ctx-bar"></i></div></div>
+      </div>
+    </aside>
+
+    <section class="orbit" id="orbit">
+      <div class="orbit-hud tl" id="hud-tl"></div>
+      <div class="orbit-hud tr" id="hud-tr"></div>
+      <div class="orbit-hud bl" id="hud-bl"></div>
+      <div class="orbit-hud br" id="hud-br"></div>
+    </section>
+
+    <div class="hermes-col">
+      <aside class="panel chat-panel" id="chat-wrap" hidden>
+        <div class="panel-head"><span class="glyph">◍</span> <span id="chat-platform">whatsapp</span> <span class="dim" id="chat-meta"></span></div>
+        <div class="chat-body" id="chat"></div>
+      </aside>
+      <aside class="panel trace">
+        <div class="panel-head"><span class="glyph">◇</span> hermes · reasoning trace <span class="tag" id="trace-live">db</span></div>
+        <div class="trace-session" id="trace-session">—</div>
+        <div class="trace-body" id="trace"></div>
+      </aside>
+    </div>
+
+    <section class="deck">
+      <div class="panel drums">
+        <div class="panel-head"><span class="glyph">▦</span> drum machine <span class="dim" id="drum-meta"></span></div>
+        <canvas id="drum-canvas"></canvas>
+      </div>
+      <div class="panel loops">
+        <div class="panel-head"><span class="glyph">◎</span> sequencer · loop layers <span class="dim" id="loop-meta"></span></div>
+        <canvas id="loop-canvas"></canvas>
+      </div>
+      <div class="panel keys">
+        <div class="panel-head"><span class="glyph">♪</span> orchid <span class="dim" id="keys-meta"></span></div>
+        <canvas id="keys-canvas"></canvas>
+      </div>
+      <div class="panel robot">
+        <div class="panel-head"><span class="glyph">⌬</span> so101 arms <span class="dim" id="robot-meta"></span></div>
+        <canvas id="robot-canvas"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <div class="theme-veil" aria-hidden="true"></div>
+  <div class="video-veil" id="video-veil" aria-hidden="true"></div>
+  <div class="video-layer" id="video-layer" aria-hidden="true">
+    <video id="video" playsinline preload="auto"></video>
+  </div>
+  <div class="video-overlay" id="video-overlay" hidden>
+    <img class="vo-mark" src="brand/token-factory-mark.svg" alt="">
+    <div class="vo-col"><span class="vo-k">now playing</span><b data-k="beat">—</b></div>
+    <div class="vo-col"><span class="vo-k">bpm</span><b data-k="bpm">—</b></div>
+    <div class="vo-col"><span class="vo-k">studio</span><b data-k="transport">—</b></div>
+    <div class="vo-col"><span class="vo-k">tok/s</span><b data-k="tps">—</b></div>
+    <div class="vo-col vo-title"><span class="vo-k">video</span><b data-k="title">—</b></div>
+  </div>
+
+  <nav class="dock" id="dock" aria-label="Display controls"></nav>
+
+  <!-- Connectivity takeover (server-driven) -->
+  <section class="alert" id="alert" role="alert" hidden>
+    <div class="al-inner">
+      <div class="al-head"><span class="al-icon" aria-hidden="true">⚠</span><span class="al-count">connection lost</span></div>
+      <ul class="al-list"></ul>
+      <div class="al-actions">
+        <span>snooze</span>
+        <button type="button" data-snooze="5">5 min</button>
+        <button type="button" data-snooze="30">30 min</button>
+        <a href="/status">open status →</a>
+      </div>
+    </div>
+  </section>
+  <div class="restored" id="restored" hidden>✓ all connections restored</div>
+
+  <div class="hint" id="hint">1–4 look · ⇧1–4 theme · D demo · F fullscreen · T trippy++ · V stop video · <a href="/settings">S settings</a></div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

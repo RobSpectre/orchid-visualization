@@ -1,0 +1,204 @@
+/* =====================================================================
+   Themes. Nebula is the base stylesheet; these restyle the whole display.
+   Palette and cues from the Nebius Token Factory guidelines (10.2025):
+   Lime #DAFF33 · Violet #5D52F6 · Deep Blue #052B42 · Lavender #C1C1FF ·
+   Light Blue #F0F8FF · gradient lime→mint→cyan→sky→periwinkle.
+   ===================================================================== */
+
+:root { --grad: linear-gradient(90deg, #DAFF33 0%, #8EF5C4 28%, #62D9F2 55%, #6FA8F8 78%, #8A8FF7 100%); }
+
+/* ---------------------------------------------------------------------
+   GLASS FOUNDRY: frosted glass slabs over a wall of lit glass cubes.
+   Wide display type (Unbounded), rounded "block" geometry from the logo.
+   --------------------------------------------------------------------- */
+body[data-theme="glass"] {
+  --lime: #DAFF33; --violet: #5D52F6; --mint: #7CF0D8; --mint-soft: #C9FBF0; --lavender: #C1C1FF;
+  --ink: #F0F8FF; --ink-dim: rgba(240, 248, 255, .66); --ink-faint: rgba(240, 248, 255, .40);
+  --line: rgba(240, 248, 255, .20); --line-strong: rgba(240, 248, 255, .55);
+  --display: 'Unbounded', sans-serif; --ui: 'Space Grotesk', sans-serif; --mono: 'Space Grotesk', sans-serif;
+  background: #031522;
+}
+[data-theme="glass"] .stage { gap: 16px; padding: 18px 20px; }
+[data-theme="glass"] .panel {
+  border-radius: 26px; padding: 16px 18px;
+  background: linear-gradient(140deg, rgba(240, 248, 255, .14), rgba(240, 248, 255, .04) 42%, rgba(98, 217, 242, .07));
+  border: 1px solid rgba(240, 248, 255, .24);
+  backdrop-filter: blur(16px) saturate(1.5); -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, .28), inset -1px -1px 0 rgba(98, 217, 242, .18), 0 24px 60px rgba(0, 8, 16, .45);
+}
+[data-theme="glass"] .panel::before {
+  inset: 0; border-radius: inherit; opacity: 1;
+  background: linear-gradient(118deg, rgba(255, 255, 255, .16) 0%, rgba(255, 255, 255, 0) 26%, rgba(255, 255, 255, 0) 70%, rgba(98, 217, 242, .08) 100%);
+}
+[data-theme="glass"] .panel-head { font-family: var(--display); font-weight: 600; letter-spacing: .1em; font-size: 11px; color: var(--ink); }
+[data-theme="glass"] .panel-head .glyph { color: #62D9F2; }
+[data-theme="glass"] .panel-head .tag { border-radius: 99px; padding: 2px 10px; background: var(--grad); color: #052B42; }
+[data-theme="glass"] .wordmark { font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: .02em; }
+[data-theme="glass"] .np-title { font-family: var(--display); font-weight: 800; letter-spacing: .02em; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: none; }
+[data-theme="glass"] .bpm, [data-theme="glass"] .pos { font-family: var(--display); font-weight: 600; }
+[data-theme="glass"] .state-pill { border-radius: 99px; }
+[data-theme="glass"] .top { border-bottom: 0; }
+[data-theme="glass"] .hero-num { font-family: var(--display); font-weight: 800; letter-spacing: -.02em; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: none; filter: drop-shadow(0 0 18px rgba(98, 217, 242, .35)); }
+[data-theme="glass"] .rv { font-family: var(--display); font-weight: 600; letter-spacing: -.01em; }
+[data-theme="glass"] .model-name { font-family: var(--display); font-weight: 600; }
+[data-theme="glass"] .row { border-bottom-color: rgba(240, 248, 255, .08); }
+[data-theme="glass"] .msg .bubble { border-radius: 22px; backdrop-filter: blur(8px); }
+[data-theme="glass"] .msg.in .bubble { background: rgba(124, 240, 216, .14); border-color: rgba(124, 240, 216, .5); }
+[data-theme="glass"] .msg.out .bubble { background: rgba(240, 248, 255, .10); border: 1px solid transparent; background: linear-gradient(rgba(12, 40, 60, .7), rgba(12, 40, 60, .7)) padding-box, var(--grad) border-box; }
+[data-theme="glass"] .chip { border-radius: 99px; border-color: rgba(98, 217, 242, .55); background: rgba(98, 217, 242, .12); }
+[data-theme="glass"] .entry .think { font-style: normal; color: var(--mint-soft); }
+[data-theme="glass"] .orbit-hud b { color: #62D9F2; }
+
+/* ---------------------------------------------------------------------
+   INFERENCE TERMINAL: phosphor CRT. Square windows with inverse-video
+   title bars, pixel type (VT323), scanlines, glow, >_ prompts.
+   --------------------------------------------------------------------- */
+body[data-theme="terminal"] {
+  --lime: #DAFF33; --violet: #5D52F6; --mint: #7CF0D8; --mint-soft: #E8FFC2; --lavender: #C9F7A0;
+  --ink: #E8FFC2; --ink-dim: rgba(218, 255, 51, .74); --ink-faint: rgba(218, 255, 51, .46);
+  --line: rgba(218, 255, 51, .32); --line-strong: #DAFF33;
+  --display: 'VT323', monospace; --ui: 'IBM Plex Mono', monospace; --mono: 'IBM Plex Mono', monospace;
+  background: #010a10;
+  text-shadow: 0 0 6px rgba(218, 255, 51, .35);
+}
+/* scanlines + CRT vignette + flicker over everything */
+body[data-theme="terminal"]::after {
+  content: ''; position: fixed; inset: 0; z-index: 6; pointer-events: none;
+  background:
+    repeating-linear-gradient(to bottom, rgba(0, 0, 0, .22) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, .55) 100%);
+  animation: crt-flicker 6s steps(60) infinite;
+}
+@keyframes crt-flicker { 0%, 100% { opacity: 1; } 47% { opacity: .92; } 48% { opacity: 1; } 73% { opacity: .96; } }
+[data-theme="terminal"] .stage { gap: 10px; }
+[data-theme="terminal"] .panel {
+  border-radius: 0; padding: 36px 14px 12px; border: 1px solid #DAFF33;
+  background: rgba(1, 12, 20, .86);
+  box-shadow: 0 0 0 1px rgba(218, 255, 51, .12), inset 0 0 30px rgba(218, 255, 51, .05), 0 0 22px rgba(218, 255, 51, .12);
+}
+[data-theme="terminal"] .panel::before { display: none; }
+/* inverse-video title bar */
+[data-theme="terminal"] .panel-head {
+  position: absolute; top: 0; left: 0; right: 0; height: 26px; margin: 0; padding: 0 10px;
+  background: #DAFF33; color: #052B42; text-shadow: none;
+  font-family: var(--display); font-size: 22px; letter-spacing: .04em; text-transform: lowercase;
+}
+[data-theme="terminal"] .panel-head .glyph { display: none; }
+[data-theme="terminal"] .panel-head::before { content: '>_'; font-weight: 700; }
+[data-theme="terminal"] .panel-head .dim { color: rgba(5, 43, 66, .75); font-family: var(--mono); font-size: 11px; }
+[data-theme="terminal"] .panel-head .tag { background: #052B42; color: #DAFF33; border-radius: 0; }
+[data-theme="terminal"] .factory { padding-top: 14px; }
+[data-theme="terminal"] .top { border-bottom: 1px dashed rgba(218, 255, 51, .5); }
+[data-theme="terminal"] .wordmark { font-family: var(--display); font-size: 40px; letter-spacing: .04em; color: #DAFF33; }
+[data-theme="terminal"] .wordmark::before { content: '> '; color: #7CF0D8; }
+[data-theme="terminal"] .mark { display: none; }
+[data-theme="terminal"] .np-title { font-family: var(--display); font-size: 34px; font-weight: 400; letter-spacing: .06em; }
+[data-theme="terminal"] .bpm { font-family: var(--display); font-size: 52px; color: #DAFF33; }
+[data-theme="terminal"] .pos { font-family: var(--display); font-size: 30px; }
+[data-theme="terminal"] .state-pill { border-radius: 0; font-family: var(--mono); }
+[data-theme="terminal"] .state-pill.playing { animation: blink 1.1s steps(2) infinite; }
+[data-theme="terminal"] .hero-num { font-family: var(--display); font-size: min(13cqh, 30cqw); letter-spacing: 0; text-shadow: 0 0 14px rgba(218, 255, 51, .7); }
+[data-theme="terminal"] .hero-num::after { content: '█'; font-size: .55em; margin-left: .1em; animation: blink 1s steps(2) infinite; vertical-align: baseline; }
+[data-theme="terminal"] .rv { font-family: var(--display); font-weight: 400; line-height: .9; font-size: min(5cqh, 11cqw); color: #DAFF33; }
+[data-theme="terminal"] .rv.est::after { color: #7CF0D8; }
+[data-theme="terminal"] .rk span::before { content: '$ '; color: #7CF0D8; }
+[data-theme="terminal"] .row { border-bottom: 1px dashed rgba(218, 255, 51, .18); padding: 0.35cqh 0; }
+[data-theme="terminal"] .rk span, [data-theme="terminal"] .rk small { line-height: 1.2; }
+[data-theme="terminal"] .ctx-bar { border-radius: 0; height: 8px; background: repeating-linear-gradient(90deg, rgba(218, 255, 51, .15) 0 6px, transparent 6px 8px); }
+[data-theme="terminal"] .ctx-bar i { background: repeating-linear-gradient(90deg, var(--ctx-c, #DAFF33) 0 6px, transparent 6px 8px); }
+[data-theme="terminal"] .model-name { font-family: var(--display); font-size: min(4.2cqh, 8cqw); font-weight: 400; }
+[data-theme="terminal"] .spark { image-rendering: pixelated; }
+[data-theme="terminal"] .lockup { margin-bottom: 1.6cqh; }
+/* trace as a log; chat as a two-party console */
+[data-theme="terminal"] .entry .meta::before { content: '['; color: var(--ink-faint); }
+[data-theme="terminal"] .entry .meta::after { content: ']'; color: var(--ink-faint); }
+[data-theme="terminal"] .entry .think { font-style: normal; color: #C9F7A0; opacity: .85; }
+[data-theme="terminal"] .entry .think::before { content: '# '; color: #7CF0D8; }
+[data-theme="terminal"] .chip { border-radius: 0; border-color: #7CF0D8; background: transparent; color: #7CF0D8; }
+[data-theme="terminal"] .chip::before { content: '$ '; }
+[data-theme="terminal"] .msg { max-width: 100%; align-self: stretch !important; align-items: stretch !important; }
+[data-theme="terminal"] .msg .bubble { border-radius: 0; background: transparent; border: 0; padding: 0 0 0 1.4em; position: relative; box-shadow: none; }
+[data-theme="terminal"] .msg .bubble::before { position: absolute; left: 0; }
+[data-theme="terminal"] .msg.in .bubble { color: #7CF0D8; }
+[data-theme="terminal"] .msg.in .bubble::before { content: '<'; color: #7CF0D8; }
+[data-theme="terminal"] .msg.out .bubble { color: #DAFF33; }
+[data-theme="terminal"] .msg.out .bubble::before { content: '>'; color: #DAFF33; }
+[data-theme="terminal"] .msg .when { text-align: left; }
+[data-theme="terminal"] .orbit-hud { font-family: var(--mono); }
+[data-theme="terminal"] .orbit-hud b { color: #DAFF33; }
+[data-theme="terminal"] .hint { font-family: var(--display); font-size: 16px; color: rgba(218, 255, 51, .5); }
+
+/* ---------------------------------------------------------------------
+   SIGNAL: the billboard. A gradient-filled pill headline with the live
+   tok/s, gradient-outlined rounded modules (the "linear" logo version),
+   wide bold type, aurora ribbons behind.
+   --------------------------------------------------------------------- */
+body[data-theme="signal"] {
+  --lime: #DAFF33; --violet: #8A8FF7; --mint: #8EF5C4; --mint-soft: #C9FBF0; --lavender: #C1C1FF;
+  --ink: #F0F8FF; --ink-dim: rgba(240, 248, 255, .7); --ink-faint: rgba(240, 248, 255, .42);
+  --line: rgba(240, 248, 255, .16); --line-strong: rgba(240, 248, 255, .5);
+  --display: 'Unbounded', sans-serif; --ui: 'Space Grotesk', sans-serif; --mono: 'Space Grotesk', sans-serif;
+  background: #031522;
+}
+[data-theme="signal"] .stage {
+  gap: 14px; padding: 16px 20px;
+  grid-template-rows: 54px clamp(96px, 15vh, 180px) minmax(0, 1fr) minmax(190px, 25vh);
+  grid-template-areas: "top top top" "banner banner banner" "factory orbit trace" "deck deck deck";
+}
+[data-theme="signal"] .banner {
+  grid-area: banner; display: flex; align-items: center; justify-content: space-between; gap: 3vw;
+  padding: 0 clamp(20px, 3vw, 56px); border-radius: clamp(24px, 4vh, 48px);
+  background: var(--grad); color: #052B42; overflow: hidden; position: relative;
+  box-shadow: 0 0 calc(30px + var(--kick) * 50px) rgba(218, 255, 51, calc(.15 + var(--kick) * .25));
+}
+[data-theme="signal"] .banner::after {
+  /* light sweep across the billboard on each kick */
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, calc(var(--kick) * .45)) 50%, transparent 70%);
+}
+[data-theme="signal"] .bn-left, [data-theme="signal"] .bn-right { display: flex; flex-direction: column; min-width: 0; }
+[data-theme="signal"] .bn-right { align-items: flex-end; text-align: right; }
+[data-theme="signal"] .bn-k { font-family: var(--ui); font-weight: 700; font-size: clamp(11px, 1.5vh, 18px); letter-spacing: .14em; text-transform: uppercase; opacity: .75; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+[data-theme="signal"] .bn-big { font-family: var(--display); font-weight: 800; font-size: clamp(44px, 9.5vh, 124px); line-height: .95; letter-spacing: -.03em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+[data-theme="signal"] .bn-big small { font-size: .32em; margin-left: .3em; letter-spacing: 0; }
+[data-theme="signal"] .bn-beat { font-family: var(--display); font-weight: 800; font-size: clamp(22px, 4.6vh, 60px); line-height: 1.05; letter-spacing: -.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 42vw; }
+/* gradient-outlined modules */
+[data-theme="signal"] .panel {
+  border-radius: 28px; padding: 16px 18px; border: 2px solid transparent;
+  background: linear-gradient(rgba(4, 30, 46, .84), rgba(4, 30, 46, .84)) padding-box, var(--grad) border-box;
+  box-shadow: none;
+}
+[data-theme="signal"] .panel::before { display: none; }
+[data-theme="signal"] .panel-head { font-family: var(--display); font-weight: 800; font-size: 12px; letter-spacing: .06em; color: var(--ink); }
+[data-theme="signal"] .panel-head .glyph { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+[data-theme="signal"] .panel-head .tag { border-radius: 99px; background: var(--grad); color: #052B42; }
+/* the banner carries tok/s and now-playing; the panel and top bar slim down */
+[data-theme="signal"] .hero, [data-theme="signal"] .now-playing { display: none; }
+[data-theme="signal"] .top { grid-template-columns: auto 1fr auto auto; border-bottom: 0; padding-bottom: 0; }
+[data-theme="signal"] .wordmark { font-family: var(--display); font-weight: 800; font-size: 20px; }
+[data-theme="signal"] .sub { display: none; }
+[data-theme="signal"] .bpm { font-family: var(--display); font-weight: 800; }
+[data-theme="signal"] .pos { font-family: var(--display); font-weight: 600; }
+[data-theme="signal"] .state-pill { border-radius: 99px; }
+[data-theme="signal"] .state-pill.playing { background: var(--grad); border-color: transparent; }
+[data-theme="signal"] .rows { justify-content: space-around; }
+[data-theme="signal"] .rv { font-family: var(--display); font-weight: 800; font-size: min(5.4cqh, 10cqw); letter-spacing: -.02em; }
+[data-theme="signal"] .rk span { font-family: var(--ui); font-weight: 700; }
+[data-theme="signal"] .model-name { font-family: var(--display); font-weight: 800; font-size: min(4.4cqh, 8cqw); }
+[data-theme="signal"] .ctx-bar { height: 1.2cqh; border-radius: 99px; }
+[data-theme="signal"] .ctx-bar i { border-radius: 99px; }
+[data-theme="signal"] .lockup { width: min(80cqw, 26cqh * 1.765); }
+[data-theme="signal"] .msg .bubble { border-radius: 24px; }
+[data-theme="signal"] .msg.out .bubble { border: 2px solid transparent; background: linear-gradient(#0a2b40, #0a2b40) padding-box, var(--grad) border-box; }
+[data-theme="signal"] .msg.in .bubble { background: rgba(142, 245, 196, .14); border-color: rgba(142, 245, 196, .6); }
+[data-theme="signal"] .chip { border-radius: 99px; }
+[data-theme="signal"] .entry .think { font-style: normal; }
+[data-theme="signal"] .orbit-hud b { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+@media (max-width: 1100px) {
+  [data-theme="signal"] .stage { grid-template-rows: auto; grid-template-areas: "top" "banner" "orbit" "factory" "trace" "deck"; }
+  [data-theme="signal"] .top { grid-template-columns: 1fr; }
+  [data-theme="signal"] .banner { flex-direction: column; align-items: flex-start; padding: 18px 22px; gap: 10px; }
+  [data-theme="signal"] .bn-right { align-items: flex-start; text-align: left; }
+  [data-theme="signal"] .bn-beat { max-width: 100%; }
+}

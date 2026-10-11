@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orchid Signal Settings</title>
+  <link rel="stylesheet" href="fonts/fonts.css">
+  <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+  <header class="bar">
+    <a class="brand" href="/">
+      <img src="brand/token-factory-mark.svg" alt="">
+      <span class="wordmark">orchid<span>//</span>signal</span>
+      <span class="crumb">settings</span>
+    </a>
+    <span class="saved" id="saved" aria-live="polite"></span>
+    <nav class="nav">
+      <a href="/status">status</a>
+      <a class="back" href="/">← visualizer</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2><span class="glyph">✦</span> theme</h2>
+      <p class="lede">The whole display: palette, type, panels and background. Built from the Nebius Token Factory guidelines.</p>
+      <div class="seg looks themes" role="radiogroup" id="vis-theme">
+        <button type="button" role="radio" data-v="nebula"><i class="sw sw-nebula"></i>Nebula <small>deep-space nebula, mono type</small></button>
+        <button type="button" role="radio" data-v="glass"><i class="sw sw-glass"></i>Glass Foundry <small>frosted slabs over lit glass cubes</small></button>
+        <button type="button" role="radio" data-v="terminal"><i class="sw sw-terminal"></i>Inference Terminal <small>phosphor CRT, pixel-grid floor</small></button>
+        <button type="button" role="radio" data-v="signal"><i class="sw sw-signal"></i>Signal <small>billboard banner, aurora, outlined modules</small></button>
+      </div>
+      <div class="field">
+        <label class="label" for="vis-theme-rotate">Rotate through all four themes</label>
+        <div class="inline">every <input type="number" id="vis-theme-rotate" min="0" step="0.5"> min <small class="hint-text">0 = stay on the selected theme</small></div>
+      </div>
+      <p class="hint-text">On the display, <b>Shift + 1–4</b> switches themes.</p>
+    </section>
+
+    <section class="card">
+      <h2><span class="glyph">◎</span> visualization</h2>
+      <p class="lede">The look of the centre stage. All four follow the live beat, notes and Studio's transport. When looping, every screen switches together.</p>
+      <div class="seg looks" role="radiogroup" id="vis-treatment">
+        <button type="button" role="radio" data-v="orbit">Orbit <small>radial drum machine + pitch circle</small></button>
+        <button type="button" role="radio" data-v="warp">Warp <small>hits fly down a hyperspace tunnel</small></button>
+        <button type="button" role="radio" data-v="ridges">Ridgelines <small>pulsar-style lines, one per 16th</small></button>
+        <button type="button" role="radio" data-v="mandala">Mandala <small>kaleidoscope + chord spirographs</small></button>
+      </div>
+      <label class="switch-row">
+        <input type="checkbox" id="vis-loop">
+        <span class="switch" aria-hidden="true"></span>
+        <span>Loop through all four looks</span>
+      </label>
+      <div class="field loop-field" id="vis-loop-field">
+        <label class="label" for="vis-rotate">Each look plays for <b id="vis-rotate-v"></b></label>
+        <input type="range" id="vis-rotate" min="0" step="1">
+        <div class="range-ends"><span>15 s</span><span>30 min</span></div>
+      </div>
+      <p class="hint-text">On the display, keys <b>1–4</b> switch looks directly.</p>
+    </section>
+
+    <section class="card">
+      <h2><span class="glyph">⚠</span> connectivity alerts</h2>
+      <p class="lede">A full-screen red takeover when a connection drops for more than 4 seconds. Turn off any system you're running without.</p>
+      <label class="switch-row">
+        <input type="checkbox" id="al-enabled">
+        <span class="switch" aria-hidden="true"></span>
+        <span>Show connectivity takeovers</span>
+      </label>
+      <div class="al-groups" id="al-groups">
+        <label class="switch-row"><input type="checkbox" data-g="studio"><span class="switch" aria-hidden="true"></span><span>Orchid Studio</span></label>
+        <label class="switch-row"><input type="checkbox" data-g="orchid"><span class="switch" aria-hidden="true"></span><span>The Orchid (USB MIDI)</span></label>
+        <label class="switch-row"><input type="checkbox" data-g="robot"><span class="switch" aria-hidden="true"></span><span>orchid-robot console</span></label>
+        <label class="switch-row"><input type="checkbox" data-g="arms"><span class="switch" aria-hidden="true"></span><span>Robot arms</span></label>
+        <label class="switch-row"><input type="checkbox" data-g="hermes"><span class="switch" aria-hidden="true"></span><span>Hermes Agent + gateway</span></label>
+        <label class="switch-row"><input type="checkbox" data-g="whatsapp"><span class="switch" aria-hidden="true"></span><span>WhatsApp</span></label>
+      </div>
+      <div class="status" id="al-status">—</div>
+    </section>
+
+    <section class="card">
+      <h2><span class="glyph">◈</span> video schedule</h2>
+      <p class="lede">Local videos take over the screen at the intervals you set, then hand back to the visualizer.</p>
+
+      <label class="switch-row">
+        <input type="checkbox" id="sch-enabled">
+        <span class="switch" aria-hidden="true"></span>
+        <span>Play videos on their schedule</span>
+      </label>
+
+      <div class="field">
+        <span class="label">Transition</span>
+        <div class="seg" role="radiogroup" id="sch-transition">
+          <button type="button" role="radio" data-v="iris">Iris <small>opens from the orbit</small></button>
+          <button type="button" role="radio" data-v="fade">Crossfade <small>dissolve</small></button>
+          <button type="button" role="radio" data-v="glitch">Glitch <small>datamosh cut</small></button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label" for="sch-ms">Transition length <b id="sch-ms-v"></b></label>
+        <input type="range" id="sch-ms" min="300" max="8000" step="100">
+      </div>
+
+      <div class="field">
+        <label class="label" for="sch-when">Play videos</label>
+        <select id="sch-when">
+          <option value="always">Any time</option>
+          <option value="not-playing">Only while Studio isn't playing</option>
+          <option value="playing">Only while Studio is playing</option>
+        </select>
+      </div>
+
+      <label class="switch-row">
+        <input type="checkbox" id="sch-overlay">
+        <span class="switch" aria-hidden="true"></span>
+        <span>Show the now-playing bar (beat, BPM, tok/s) over videos</span>
+      </label>
+
+      <div class="status" id="status">—</div>
+    </section>
+
+    <section class="card">
+      <h2><span class="glyph">▶</span> videos</h2>
+      <label class="drop" id="drop">
+        <input type="file" id="file" accept=".mp4,.m4v,.mov,.webm,.ogv,.mkv,video/*" multiple>
+        <b>Drop video files here</b> or <u>choose files</u>
+        <small>mp4 · mov · webm · m4v · ogv · mkv — copied into <code id="media-dir">media/</code></small>
+      </label>
+      <div class="uploads" id="uploads"></div>
+      <div class="videos" id="videos"></div>
+      <p class="empty" id="empty" hidden>No videos yet. Add one above, or copy files into the media folder.</p>
+    </section>
+  </main>
+
+  <template id="video-card">
+    <article class="video">
+      <div class="thumb"><video muted preload="metadata" playsinline></video><span class="dur"></span></div>
+      <div class="body">
+        <div class="head">
+          <input class="title" type="text" aria-label="Title" maxlength="120">
+          <label class="switch-row compact" title="Include in the schedule">
+            <input type="checkbox" class="enabled">
+            <span class="switch" aria-hidden="true"></span>
+            <span class="on-label">on</span>
+          </label>
+        </div>
+        <div class="meta"></div>
+        <div class="controls">
+          <label>Every <input class="every" type="number" min="0.25" step="0.25"> min</label>
+          <label>Play
+            <select class="mode"><option value="full">whole video</option><option value="for">for…</option></select>
+            <span class="for-wrap"><input class="playfor" type="number" min="1" step="1"> s</span>
+          </label>
+          <label>Start at <input class="start" type="number" min="0" step="1"> s</label>
+          <label class="vol">Sound <input class="volume" type="range" min="0" max="1" step="0.05"> <span class="vol-v"></span></label>
+        </div>
+        <div class="foot">
+          <span class="next"></span>
+          <button type="button" class="play">▶ Play now</button>
+          <button type="button" class="delete">Delete</button>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <script type="module" src="settings.js"></script>
+</body>
+</html>

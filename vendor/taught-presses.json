@@ -1,0 +1,484 @@
+{
+ "source": "orchid-robot taught motions (hover/touch/press, LeRobot degrees) + follower calibration ranges",
+ "exportedAt": "2026-10-10T23:01:30.637Z",
+ "arms": {
+  "a": {
+   "calibrationId": "3ac850f90883",
+   "calibration": {
+    "shoulder_pan": [
+     682,
+     3230
+    ],
+    "shoulder_lift": [
+     879,
+     3257
+    ],
+    "elbow_flex": [
+     852,
+     3066
+    ],
+    "wrist_flex": [
+     859,
+     3188
+    ],
+    "wrist_roll": [
+     0,
+     4095
+    ],
+    "gripper": [
+     1639,
+     3096
+    ]
+   },
+   "controls": {
+    "C": {
+     "hover": {
+      "shoulder_pan": 9.582,
+      "shoulder_lift": 47.209,
+      "elbow_flex": -59.165,
+      "wrist_flex": 95.692,
+      "wrist_roll": -138.154,
+      "gripper": 1.647
+     },
+     "touch": {
+      "shoulder_pan": 8.967,
+      "shoulder_lift": 57.934,
+      "elbow_flex": -69.099,
+      "wrist_flex": 99.648,
+      "wrist_roll": -140.176,
+      "gripper": 1.647
+     },
+     "press": {
+      "shoulder_pan": 8.967,
+      "shoulder_lift": 61.538,
+      "elbow_flex": -69.187,
+      "wrist_flex": 99.648,
+      "wrist_roll": -140.176,
+      "gripper": 1.647
+     }
+    },
+    "D": {
+     "hover": {
+      "shoulder_pan": 6.505,
+      "shoulder_lift": 42.989,
+      "elbow_flex": -52.659,
+      "wrist_flex": 99.648,
+      "wrist_roll": -141.758,
+      "gripper": 3.706
+     },
+     "touch": {
+      "shoulder_pan": 6.681,
+      "shoulder_lift": 48.703,
+      "elbow_flex": -52.659,
+      "wrist_flex": 94.989,
+      "wrist_roll": -141.055,
+      "gripper": 3.706
+     },
+     "press": {
+      "shoulder_pan": 6.681,
+      "shoulder_lift": 52.923,
+      "elbow_flex": -52.747,
+      "wrist_flex": 93.67,
+      "wrist_roll": -141.055,
+      "gripper": 3.706
+     }
+    },
+    "E": {
+     "hover": {
+      "shoulder_pan": 3.253,
+      "shoulder_lift": 39.297,
+      "elbow_flex": -45.538,
+      "wrist_flex": 99.648,
+      "wrist_roll": -144.923,
+      "gripper": 1.647
+     },
+     "touch": {
+      "shoulder_pan": 1.846,
+      "shoulder_lift": 51.78,
+      "elbow_flex": -54.066,
+      "wrist_flex": 99.648,
+      "wrist_roll": -143.692,
+      "gripper": 1.647
+     },
+     "press": {
+      "shoulder_pan": 2.286,
+      "shoulder_lift": 56,
+      "elbow_flex": -56.264,
+      "wrist_flex": 100.088,
+      "wrist_roll": -144.132,
+      "gripper": 1.647
+     }
+    },
+    "F": {
+     "hover": {
+      "shoulder_pan": -1.407,
+      "shoulder_lift": 37.89,
+      "elbow_flex": -46.857,
+      "wrist_flex": 99.121,
+      "wrist_roll": -142.989,
+      "gripper": 1.647
+     },
+     "touch": {
+      "shoulder_pan": -1.407,
+      "shoulder_lift": 45.538,
+      "elbow_flex": -46.945,
+      "wrist_flex": 98.066,
+      "wrist_roll": -144.132,
+      "gripper": 1.647
+     },
+     "press": {
+      "shoulder_pan": -1.231,
+      "shoulder_lift": 52.484,
+      "elbow_flex": -48.703,
+      "wrist_flex": 94.374,
+      "wrist_roll": -144.132,
+      "gripper": 1.647
+     }
+    },
+    "G": {
+     "hover": {
+      "shoulder_pan": -4.484,
+      "shoulder_lift": 29.714,
+      "elbow_flex": -33.495,
+      "wrist_flex": 99.648,
+      "wrist_roll": -148.352,
+      "gripper": 1.647
+     },
+     "touch": {
+      "shoulder_pan": -4.659,
+      "shoulder_lift": 38.857,
+      "elbow_flex": -31.385,
+      "wrist_flex": 94.549,
+      "wrist_roll": -148.527,
+      "gripper": 1.647
+     },
+     "press": {
+      "shoulder_pan": -4.484,
+      "shoulder_lift": 41.495,
+      "elbow_flex": -31.912,
+      "wrist_flex": 94.549,
+      "wrist_roll": -148.44,
+      "gripper": 1.647
+     }
+    },
+    "A": {
+     "hover": {
+      "shoulder_pan": -9.143,
+      "shoulder_lift": 31.56,
+      "elbow_flex": -32,
+      "wrist_flex": 95.604,
+      "wrist_roll": -149.319,
+      "gripper": 1.51
+     },
+     "touch": {
+      "shoulder_pan": -9.143,
+      "shoulder_lift": 43.604,
+      "elbow_flex": -38.857,
+      "wrist_flex": 98.945,
+      "wrist_roll": -149.319,
+      "gripper": 1.51
+     },
+     "press": {
+      "shoulder_pan": -9.055,
+      "shoulder_lift": 48.264,
+      "elbow_flex": -41.055,
+      "wrist_flex": 99.648,
+      "wrist_roll": -149.231,
+      "gripper": 1.51
+     }
+    },
+    "B": {
+     "hover": {
+      "shoulder_pan": -13.187,
+      "shoulder_lift": 17.758,
+      "elbow_flex": -11.868,
+      "wrist_flex": 87.516,
+      "wrist_roll": -153.89,
+      "gripper": 1.647
+     },
+     "touch": {
+      "shoulder_pan": -13.187,
+      "shoulder_lift": 26.549,
+      "elbow_flex": -11.868,
+      "wrist_flex": 83.736,
+      "wrist_roll": -153.89,
+      "gripper": 1.647
+     },
+     "press": {
+      "shoulder_pan": -13.187,
+      "shoulder_lift": 30.33,
+      "elbow_flex": -13.275,
+      "wrist_flex": 83.736,
+      "wrist_roll": -153.89,
+      "gripper": 1.647
+     }
+    },
+    "A#": {
+     "hover": {
+      "shoulder_pan": -9.231,
+      "shoulder_lift": 11.956,
+      "elbow_flex": -5.011,
+      "wrist_flex": 92.44,
+      "wrist_roll": -149.495,
+      "gripper": 1.51
+     },
+     "touch": {
+      "shoulder_pan": -9.231,
+      "shoulder_lift": 11.956,
+      "elbow_flex": 6.593,
+      "wrist_flex": 81.187,
+      "wrist_roll": -149.407,
+      "gripper": 1.51
+     },
+     "press": {
+      "shoulder_pan": -9.231,
+      "shoulder_lift": 14.242,
+      "elbow_flex": 6.857,
+      "wrist_flex": 79.956,
+      "wrist_roll": -149.407,
+      "gripper": 1.51
+     }
+    },
+    "G#": {
+     "hover": {
+      "shoulder_pan": -1.143,
+      "shoulder_lift": 6.33,
+      "elbow_flex": 3.604,
+      "wrist_flex": 87.077,
+      "wrist_roll": -145.363,
+      "gripper": 1.647
+     },
+     "touch": {
+      "shoulder_pan": -3.341,
+      "shoulder_lift": 9.319,
+      "elbow_flex": 7.56,
+      "wrist_flex": 80.044,
+      "wrist_roll": -147.209,
+      "gripper": 1.647
+     },
+     "press": {
+      "shoulder_pan": -3.253,
+      "shoulder_lift": 8.791,
+      "elbow_flex": 13.714,
+      "wrist_flex": 74.154,
+      "wrist_roll": -147.473,
+      "gripper": 1.647
+     }
+    },
+    "F#": {
+     "hover": {
+      "shoulder_pan": 3.253,
+      "shoulder_lift": 8.44,
+      "elbow_flex": -6.857,
+      "wrist_flex": 92.088,
+      "wrist_roll": -139.648,
+      "gripper": 3.706
+     },
+     "touch": {
+      "shoulder_pan": 3.253,
+      "shoulder_lift": 8.44,
+      "elbow_flex": 10.286,
+      "wrist_flex": 74.769,
+      "wrist_roll": -141.407,
+      "gripper": 3.706
+     },
+     "press": {
+      "shoulder_pan": 3.429,
+      "shoulder_lift": 5.187,
+      "elbow_flex": 17.934,
+      "wrist_flex": 69.055,
+      "wrist_roll": -139.736,
+      "gripper": 6.108
+     }
+    },
+    "D#": {
+     "hover": {
+      "shoulder_pan": 8.352,
+      "shoulder_lift": 21.538,
+      "elbow_flex": -22.681,
+      "wrist_flex": 92.967,
+      "wrist_roll": -135.868,
+      "gripper": 1.51
+     },
+     "touch": {
+      "shoulder_pan": 8.352,
+      "shoulder_lift": 38.33,
+      "elbow_flex": -32.879,
+      "wrist_flex": 95.429,
+      "wrist_roll": -135.868,
+      "gripper": 1.51
+     },
+     "press": {
+      "shoulder_pan": 8.352,
+      "shoulder_lift": 41.231,
+      "elbow_flex": -34.286,
+      "wrist_flex": 95.429,
+      "wrist_roll": -135.868,
+      "gripper": 1.51
+     }
+    },
+    "C#": {
+     "hover": {
+      "shoulder_pan": 13.187,
+      "shoulder_lift": 34.11,
+      "elbow_flex": -38.418,
+      "wrist_flex": 98.945,
+      "wrist_roll": -129.011,
+      "gripper": 3.706
+     },
+     "touch": {
+      "shoulder_pan": 13.187,
+      "shoulder_lift": 34.11,
+      "elbow_flex": -27.077,
+      "wrist_flex": 90.769,
+      "wrist_roll": -129.099,
+      "gripper": 3.706
+     },
+     "press": {
+      "shoulder_pan": 13.187,
+      "shoulder_lift": 36.044,
+      "elbow_flex": -27.077,
+      "wrist_flex": 88.747,
+      "wrist_roll": -129.099,
+      "gripper": 3.706
+     }
+    }
+   }
+  },
+  "b": {
+   "calibrationId": "1f07da0a035d",
+   "calibration": {
+    "shoulder_pan": [
+     707,
+     3477
+    ],
+    "shoulder_lift": [
+     800,
+     3194
+    ],
+    "elbow_flex": [
+     827,
+     3046
+    ],
+    "wrist_flex": [
+     926,
+     3313
+    ],
+    "wrist_roll": [
+     0,
+     4095
+    ],
+    "gripper": [
+     1690,
+     3171
+    ]
+   },
+   "controls": {
+    "chord.dim": {
+     "hover": {
+      "shoulder_pan": 5.451,
+      "shoulder_lift": -5.714,
+      "elbow_flex": 27.121,
+      "wrist_flex": 78.549,
+      "wrist_roll": 6.637,
+      "gripper": 0.405
+     },
+     "touch": {
+      "shoulder_pan": 5.275,
+      "shoulder_lift": -2.11,
+      "elbow_flex": 28.527,
+      "wrist_flex": 75.473,
+      "wrist_roll": 4.352,
+      "gripper": 0.405
+     },
+     "press": {
+      "shoulder_pan": 7.121,
+      "shoulder_lift": -2.725,
+      "elbow_flex": 32.308,
+      "wrist_flex": 70.725,
+      "wrist_roll": 8.132,
+      "gripper": 0.405
+     }
+    },
+    "chord.min": {
+     "hover": {
+      "shoulder_pan": -0.615,
+      "shoulder_lift": -5.89,
+      "elbow_flex": 27.648,
+      "wrist_flex": 76,
+      "wrist_roll": -2.066,
+      "gripper": 0.405
+     },
+     "touch": {
+      "shoulder_pan": -0.615,
+      "shoulder_lift": -1.934,
+      "elbow_flex": 28,
+      "wrist_flex": 73.978,
+      "wrist_roll": -1.714,
+      "gripper": 0.405
+     },
+     "press": {
+      "shoulder_pan": -0.352,
+      "shoulder_lift": 1.143,
+      "elbow_flex": 30.022,
+      "wrist_flex": 70.549,
+      "wrist_roll": -1.714,
+      "gripper": 0.405
+     }
+    },
+    "chord.maj": {
+     "hover": {
+      "shoulder_pan": -6.242,
+      "shoulder_lift": -0.527,
+      "elbow_flex": 19.121,
+      "wrist_flex": 79.868,
+      "wrist_roll": -4.879,
+      "gripper": 1.553
+     },
+     "touch": {
+      "shoulder_pan": -6.154,
+      "shoulder_lift": -0.527,
+      "elbow_flex": 26.505,
+      "wrist_flex": 70.901,
+      "wrist_roll": -4.879,
+      "gripper": 1.553
+     },
+     "press": {
+      "shoulder_pan": -5.978,
+      "shoulder_lift": -0.791,
+      "elbow_flex": 29.67,
+      "wrist_flex": 67.033,
+      "wrist_roll": -4.879,
+      "gripper": 1.553
+     }
+    },
+    "chord.sus": {
+     "hover": {
+      "shoulder_pan": -11.253,
+      "shoulder_lift": 2.462,
+      "elbow_flex": 16.484,
+      "wrist_flex": 77.582,
+      "wrist_roll": -13.407,
+      "gripper": 1.553
+     },
+     "touch": {
+      "shoulder_pan": -10.725,
+      "shoulder_lift": 8.44,
+      "elbow_flex": 15.341,
+      "wrist_flex": 76,
+      "wrist_roll": -12.44,
+      "gripper": 1.553
+     },
+     "press": {
+      "shoulder_pan": -10.637,
+      "shoulder_lift": 7.736,
+      "elbow_flex": 20.088,
+      "wrist_flex": 70.637,
+      "wrist_roll": -10.857,
+      "gripper": 1.553
+     }
+    }
+   }
+  }
+ }
+}
