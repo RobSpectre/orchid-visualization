@@ -84,6 +84,7 @@ function renderVisual() {
   for (const b of $('vis-theme').querySelectorAll('button')) b.setAttribute('aria-checked', String(b.dataset.v === v.theme));
   const every = v.rotateEvery || v.rotateMin || 1;
   $('vis-loop').checked = v.rotateMin > 0;
+  $('vis-whatsapp').checked = v.whatsapp !== false;
   $('vis-loop-field').classList.toggle('off', !(v.rotateMin > 0));
   if (document.activeElement !== $('vis-rotate')) $('vis-rotate').value = stepIndex(every);
   $('vis-rotate-v').textContent = fmtStep(LOOP_STEPS[stepIndex(every)]);
@@ -115,6 +116,7 @@ $('vis-rotate').addEventListener('input', (e) => {
   state.visual.rotateEvery = m;
   queue({ visual: state.visual.rotateMin > 0 ? { rotateEvery: m, rotateMin: m } : { rotateEvery: m } });
 });
+$('vis-whatsapp').addEventListener('change', (e) => queue({ visual: { whatsapp: e.target.checked } }));
 $('vis-loop').addEventListener('change', (e) => {
   const every = state.visual.rotateEvery || 1;
   state.visual.rotateMin = e.target.checked ? every : 0;

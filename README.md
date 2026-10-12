@@ -230,7 +230,8 @@ Open **Settings** (`S`, or <http://127.0.0.1:4747/settings>).
   - transition length
   - whether videos may play any time, only while Studio isn't playing, or only while it is
   - whether to keep a now-playing bar (beat, BPM, Studio state, tok/s) over the video
-- **Saving and playing:** changes save immediately to `data/settings.json`. **Play now** starts a video on every open visualizer.
+- - **WhatsApp on screen:** a switch in Settings → Look shows or hides the WhatsApp conversation. When it's off, the pane and the chat bubbles in the trace are hidden and the reasoning trace fills the column. Its connectivity alert is controlled separately, under Connectivity alerts.
+**Saving and playing:** changes save immediately to `data/settings.json`. **Play now** starts a video on every open visualizer.
 
 The server runs the schedule. When several videos are due at once, the most overdue one plays first, and nothing interrupts a video already on screen. If a video stalls or its file has no length information, a backstop timer and a stall watchdog still hand back to the visualizer. While a video fully covers the screen, the visualizer stops drawing to save GPU.
 

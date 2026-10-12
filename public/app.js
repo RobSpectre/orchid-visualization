@@ -24,7 +24,7 @@ const drawRobot = createArmView($('robot-canvas'), $('robot-meta'));
 const updateFactory = createFactory();
 const trace = createTrace($('trace'), $('trace-session'), $('trace-live'), $('factory'), {
   wrap: $('chat-wrap'), body: $('chat'), platform: $('chat-platform'), meta: $('chat-meta'),
-});
+}, () => visual.whatsapp !== false); // Settings → WhatsApp on screen
 
 const video = createVideo({ layer: $('video-layer'), veil: $('video-veil'), video: $('video'), overlay: $('video-overlay'), orbitEl: $('orbit') });
 
@@ -88,7 +88,7 @@ function setTheme(id) {
 setTheme('nebula');
 
 // Look + theme from settings. With rotation on, the wall clock picks them so every screen agrees.
-let visual = { treatment: 'orbit', rotateMin: 0, rotateEvery: 1, theme: 'nebula', themeRotateMin: 0 };
+let visual = { treatment: 'orbit', rotateMin: 0, rotateEvery: 1, theme: 'nebula', themeRotateMin: 0, whatsapp: true };
 let lastWanted = null, lastTheme = null;
 function rotated(list, startId, minutes) {
   const start = Math.max(0, list.findIndex((t) => t.id === startId));
@@ -101,7 +101,7 @@ function syncVisual() {
   const theme = rotated(THEMES, visual.theme, visual.themeRotateMin);
   if (theme !== lastTheme) { lastTheme = theme; setTheme(theme); }
 }
-live('settings', (st) => { if (st.visual) { visual = { ...visual, ...st.visual }; lastWanted = null; lastTheme = null; syncVisual(); } });
+live('settings', (st) => { if (st.visual) { visual = { ...visual, ...st.visual }; lastWanted = null; lastTheme = null; syncVisual(); trace.chatVisibility(); } });
 setInterval(syncVisual, 1000);
 
 // Connectivity takeover (suppressed in demo mode, where things are offline on purpose).

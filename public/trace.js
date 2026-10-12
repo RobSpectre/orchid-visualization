@@ -16,7 +16,7 @@ const chatMarkup = (s) => esc(s)
   .replace(/~([^~\n]+)~/g, '<s>$1</s>');
 const CHAT_SOURCES = new Set(['whatsapp', 'telegram', 'signal', 'slack', 'discord', 'sms', 'imessage']);
 
-export function createTrace(body, sessionEl, liveTag, factoryEl, chatEls) {
+export function createTrace(body, sessionEl, liveTag, factoryEl, chatEls, chatEnabled = () => true) {
   const typing = []; // {el, text, shown}
   let liveEntry = null;
   const pending = []; // finished stream blocks waiting for their message: { el, at }
@@ -51,7 +51,7 @@ export function createTrace(body, sessionEl, liveTag, factoryEl, chatEls) {
     el.innerHTML = `<div class="when">${incoming ? '▸ in' : 'hermes ▸'} · ${time(m.ts)}</div><div class="bubble">${chatMarkup(text)}</div>`;
     chatEls.body.appendChild(el);
     while (chatEls.body.children.length > 30) chatEls.body.removeChild(chatEls.body.firstChild);
-    chatEls.wrap.hidden = false;
+    chatEls.wrap.hidden = !chatEnabled();
     chatEls.platform.textContent = m.source;
     chatEls.meta.textContent = `${chatCount} messages · last ${time(m.ts)}`;
   }
@@ -66,6 +66,7 @@ export function createTrace(body, sessionEl, liveTag, factoryEl, chatEls) {
     // A chat reply is the turn's final assistant text (no tool calls pending).
     const chatIn = chat && m.role === 'user';
     const chatOut = chat && m.role === 'assistant' && m.content && !m.tools.length && m.finish === 'stop';
+    if ((chatIn || chatOut) && !chatEnabled()) return; // WhatsApp hidden in Settings: keep only the agent's own steps
     el.className = `entry ${m.role}${chatIn ? ' chat-in' : ''}${chatOut ? ' chat-out' : ''}`;
     const who = chatIn ? `${m.source} ▸ hermes`
       : chatOut ? `hermes ▸ ${m.source}`
@@ -124,16 +125,18 @@ export function createTrace(body, sessionEl, liveTag, factoryEl, chatEls) {
   }
 
   return {
+    // Settings toggled WhatsApp on/off: show or hide the pane (the trace column fills the space).
+    chatVisibility() { chatEls.wrap.hidden = !chatEnabled() || !chatCount; },
     chat({ backfill, messages }) {
       if (backfill) {
         chatEls.body.innerHTML = '';
         chatSeen.clear();
         chatCount = 0;
-        chatEls.wrap.hidden = !messages.length;
+        chatEls.wrap.hidden = !messages.length || !chatEnabled();
       }
       for (const m of messages) {
         addChat(m, !backfill);
-        if (!backfill && m.role === 'user') {
+        if (!backfill && m.role === 'user' && chatEnabled()) {
           // Incoming chat message: its letters fly from the chat into the orbit.
           fire('tokens', { from: chatRect(), count: Math.max(30, m.content.length * 2), text: m.content, colors: ['#87EDDC', '#AFF8EC'] });
           fire('chat', m);

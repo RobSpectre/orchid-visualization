@@ -27,7 +27,7 @@ export const TREATMENT_IDS = ['orbit', 'warp', 'ridges', 'mandala'];
 export const THEME_IDS = ['nebula', 'glass', 'terminal', 'signal'];
 // Looks loop by default. rotateEvery is the chosen interval (kept while rotation is
 // off); rotateMin is the active interval, 0 when not rotating.
-const DEFAULT_VISUAL = { treatment: 'orbit', rotateMin: 1, rotateEvery: 1, theme: 'nebula', themeRotateMin: 0 };
+const DEFAULT_VISUAL = { treatment: 'orbit', rotateMin: 1, rotateEvery: 1, theme: 'nebula', themeRotateMin: 0, whatsapp: true };
 const minutes = (v) => (v == null || Number(v) <= 0 ? 0 : clamp(v, 0.25, 24 * 60, 0));
 function cleanVisual(v = {}) {
   const rotateEvery = minutes(v.rotateEvery) || minutes(v.rotateMin) || DEFAULT_VISUAL.rotateEvery;
@@ -37,6 +37,7 @@ function cleanVisual(v = {}) {
     rotateEvery,
     theme: THEME_IDS.includes(v.theme) ? v.theme : DEFAULT_VISUAL.theme,
     themeRotateMin: minutes(v.themeRotateMin),
+    whatsapp: v.whatsapp !== false, // show the WhatsApp (chat) conversation on screen
   };
 }
 // Connectivity alerts: groups the operator can mute, and a shared snooze.
